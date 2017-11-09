@@ -22,12 +22,13 @@ static char wpa_cmd_1[56] = "wpa_supplicant -iwlan0 -c/etc/wpa_supplicant.conf -
 static char wpa_cmd_2[15] = "wpa_supplicant";
 static char ip_cmd_1[31] = "ip addr add 10.10.10.1/30 dev ";
 static char ip_cmd_2[31] = "ip addr del 10.10.10.1/30 dev ";
+static char ip_cmd_3[31] = "link set eth0 up ";
 static char rf_cmd_1[19] = "rfkill unblock wifi";
 static char rf_cmd_2[18] = "rfkill block wifi";
 static char kill_cmd_1[9] = "killall ";
 static char kill_cmd_2[9] = "kill -9 ";
 static char ps_cmd_1[23] = "ps aux | grep --color ";
-static char ps_cmd_2[36] = " | grep -v grep | awk '{print $2}'";
+static char ps_cmd_2[36] = " | grep -v grep | awk '{print $1}'";
 static char app1 [] = {"ps -A | grep -q wpa_supplicant"};
 static char app2 [] = {"ps -A | grep -q dhclient"};
 static char app3 [] = {"ps -A | grep -q rfkill"};
@@ -114,14 +115,14 @@ char* cmd_maker(const char *s1, const char *s2) {
 	memcpy(result, s1, len1);
 	memcpy(result+len1, s2, len2+1);//+1 to copy the null-terminator
 	printf ("RDY TO APPLY ____|:|<*-*> (%s)\n", result);//debug
-	sleep(1);//debug
+	sleep(5);//debug
 	return result;
 }
 
 char* pidfind (char *a) {
 	FILE* pipe = popen(a, "r");
 	if (pipe) {
-		
+
 		char buffer[128];
 		while(!feof(pipe)) {
 
@@ -137,16 +138,16 @@ char* pidfind (char *a) {
 
 /*	int z;
 	z = system(a);
-	
+
 	printf("getpid var %s\n pid got %i\n", a);
 
 
-	return buffer; 
+	return buffer;
 */
 }
 
 char* takedown (char *a, char *b, char *c, char *d, char *e) {
-	
+
 	int z1,y1,w1;
 
 	char* x1[] = {app1};
@@ -159,7 +160,7 @@ char* takedown (char *a, char *b, char *c, char *d, char *e) {
 		       system(v1[y1]);
 		       printf("Killing %s\n",v1[y1]);
 		       sleep(12);
-	       }	
+	       }
 		if (y1 = 1) {
 			for (y1 = 1; y1 < 4; y1++) {
 				system(v1[y1]);
@@ -167,21 +168,22 @@ char* takedown (char *a, char *b, char *c, char *d, char *e) {
 			}
 			y1 = 5;
 		}
-       
+
 	}
+	sleep(15);
 }
 
 // re-initializes network componets
 // re-initializes network componets
-char* bringup (char *a, char *b, char *c, char *d) {
+char* bringup (char *a, char *b, char *c, char *d, char *e) {
 	//printf("this is B: %s\n this is A: %s\n this is C: %s\n", b, a, c ); //debug
 	int z1,y1,w1;
 
-	char* v1[] = {a,b,c,d};
-	for (y1 = 0; y1 < 4; y1++) {
+	char* v1[] = {a,b,c,d,e};
+	for (y1 = 0; y1 < 5; y1++) {
 		system(v1[y1]);
 		printf("BRINGING UP ____|:|<*-*> (%s)\n", v1[y1]);
-		sleep(4);
+		sleep(8);
 
 	}
 
@@ -196,7 +198,7 @@ int main (void) {
 	int mustbeup = 0;
 	int netcheck_1;
 
-	
+
 	//printf ("UpDown Status : %d\n", updown_1);
 	if (updown_1 !=0) {
 		notice(netcheck_1);
@@ -211,7 +213,7 @@ int main (void) {
 			sleep(600);
 			system("clear");
 			main();
-			
+
 		} else {
 			notice(netcheck_1);
 			//printf ("netcheck %i\n updown %i\n", netcheck_1, updown_1);//debug
@@ -226,12 +228,12 @@ int main (void) {
 			//printf("%s\n %s\n",sup_kill, wlan_dhcp_pid);//debug
 			char *eth_up = cmd_maker(ip_cmd_1, eth_int_1);
 			char *dhcp_wlan_up = cmd_maker(dhcp_cmd_1, wlan_int_1);
-			char *doctor_3 = bringup(rf_cmd_1, wpa_cmd_1, eth_up, dhcp_wlan_up);
+			char *doctor_3 = bringup(rf_cmd_1, wpa_cmd_1, eth_up, dhcp_wlan_up, ip_cmd_3);
 			fail_count_1++;
 			fail_status_1 = 1;
 
 		}
 	}
 	sleep(60);
-	main();	
+	main();
 }
