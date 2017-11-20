@@ -25,7 +25,7 @@ static char ip_cmd_2[31] = "ip addr del 10.10.10.1/30 dev ";
 static char ip_cmd_3[31] = "link set eth0 up ";
 static char rf_cmd_1[19] = "rfkill unblock wifi";
 static char rf_cmd_2[18] = "rfkill block wifi";
-static char kill_cmd_1[9] = "killall ";
+static char kill_cmd_1[9] = "killall --ignore-case ";
 static char kill_cmd_2[9] = "kill -9 ";
 static char ps_cmd_1[23] = "ps aux | grep --color ";
 static char ps_cmd_2[36] = " | grep -v grep | awk '{print $1}'";
@@ -147,9 +147,8 @@ char* pidfind (char *a) {
 }
 
 char* takedown (char *a, char *b, char *c, char *d, char *e) {
-
+	//kind of complicated and I have forgotton how it works...
 	int z1,y1,w1;
-
 	char* x1[] = {app1};
 	char* v1[] = {a,b,c,d,e};
 	for (y1 = 0; y1 < 5; y1++) {
@@ -159,12 +158,13 @@ char* takedown (char *a, char *b, char *c, char *d, char *e) {
 	       if (w1 = 0) {
 		       system(v1[y1]);
 		       printf("Killing %s\n",v1[y1]);
-		       sleep(12);
+		       sleep(2);
 	       }
 		if (y1 = 1) {
 			for (y1 = 1; y1 < 4; y1++) {
 				system(v1[y1]);
 				printf("BRINGING DOWN ____|:|<*-*> (%s)\n",v1[y1]);
+				sleep(2);
 			}
 			y1 = 5;
 		}
