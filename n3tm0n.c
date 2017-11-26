@@ -253,7 +253,7 @@ int main (void) {
 	//printf ("UpDown Status : %d\n", updown_1);
 	if (updown_1 !=0) {
 		notice(netcheck_1);
-		netcheck_1 = socktest_1(noticeRecovery, port_1, add_1, recoveryCounter) + socktest_2(noticeRecovery, port_1, add_2, recoveryCounter, ipAddressWLAN0);
+		netcheck_1 = socktest_1(noticeRecovery, port_1, add_1, recoveryCounter, ipAddressWLAN0) + socktest_2(noticeRecovery, port_1, add_2, recoveryCounter, ipAddressWLAN0);
 		//printf ("%i\n dogsgs\n", netcheck_1);//debug
 		//sleep(10);
 		if (netcheck_1 >=1) {
