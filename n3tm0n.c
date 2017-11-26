@@ -131,7 +131,7 @@ char* cmd_maker(const char *s1, const char *s2) {
 	memcpy(result, s1, len1);
 	memcpy(result+len1, s2, len2+1);//+1 to copy the null-terminator
 	printf ("RDY TO APPLY ____|:|<*-*> (%s)\n", result);//debug
-	sleep(5);//debug
+	//sleep(5);//debug
 	return result;
 }
 
