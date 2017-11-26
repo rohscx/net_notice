@@ -99,7 +99,7 @@ int socktest_1(void (*f)(int,char *), int a, char *b, int c, char *d) {
 
 		else {
 
-			printf("Test Success: port: %i address: %s\n", a, b);
+			printf("%sTest Success: port: %i address: %s\n", KNRM, a, b);
 			// calls noticeRecovery function
 			// extrainious on screen text commenting out. Only one needed
 			//(*f)(c);
@@ -212,7 +212,7 @@ char* takedown (char *a, char *b, char *c, char *d, char *e) {
 		//printf("w1=%i system(%s) x1[%i]\n",w1,x1[y1],y1);
 	       if (w1 = 0) {
 		       system(v1[y1]);
-		       printf("%sKilling %s\n",KRED,v1[y1]);
+		       printf("%sKilling %s\n",KGRN,v1[y1]);
 		       sleep(2);
 	       }
 		if (y1 = 1) {
