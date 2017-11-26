@@ -188,17 +188,9 @@ char* cmdRunner (char *a) {
 		buffer_out[strlen(buffer)-1] = '\0';
 		strcpy(buffer_out,buffer);
 	}
-	printf("%s", buffer_out);
+	// debug
+	//printf("%s", buffer_out);
 	return buffer_out;
-
-/*	int z;
-	z = system(a);
-
-	printf("getpid var %s\n pid got %i\n", a);
-
-
-	return buffer;
-*/
 }
 
 char* takedown (char *a, char *b, char *c, char *d, char *e) {
