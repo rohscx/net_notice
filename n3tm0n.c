@@ -7,6 +7,14 @@
 #include <sys/socket.h> // socket open checking commands
 #include <netinet/in.h> // socket open checking commands
 #include <arpa/inet.h> // socket open checkking commands
+#define KNRM  "\x1B[0m" // text color normal
+#define KRED  "\x1B[31m" // text color red
+#define KGRN  "\x1B[32m" // text color green
+#define KYEL  "\x1B[33m" // text color yellow
+#define KBLU  "\x1B[34m" // text color blue
+#define KMAG  "\x1B[35m" // text color magenta
+#define KCYN  "\x1B[36m" // text color cyan
+#define KWHT  "\x1B[37m" // text color white
 
 // variables for application
 char status_1[8];
@@ -141,7 +149,7 @@ char* cmd_maker(const char *s1, const char *s2) {
 	//in real code you would check for errors in malloc here
 	memcpy(result, s1, len1);
 	memcpy(result+len1, s2, len2+1);//+1 to copy the null-terminator
-	printf ("RDY TO APPLY ____|:|<*-*> (%s)\n", result);//debug
+	printf ("%sRDY TO APPLY ____|:|<*-*> (%s)\n", KYEL, result);//debug
 	//sleep(5);//debug
 	return result;
 }
@@ -204,7 +212,7 @@ char* takedown (char *a, char *b, char *c, char *d, char *e) {
 		//printf("w1=%i system(%s) x1[%i]\n",w1,x1[y1],y1);
 	       if (w1 = 0) {
 		       system(v1[y1]);
-		       printf("Killing %s\n",v1[y1]);
+		       printf("%sKilling %s\n",KRED,v1[y1]);
 		       sleep(2);
 	       }
 		if (y1 = 1) {
@@ -230,7 +238,7 @@ char* bringup (char *a, char *b, char *c, char *d, char *e) {
 	for (y1 = 0; y1 < 5; y1++) {
 		system(v1[y1]);
 		printf("BRINGING UP ____|:|<*-*> (%s)\n", v1[y1]);
-		sleep(8);
+		sleep(4);
 
 	}
 
