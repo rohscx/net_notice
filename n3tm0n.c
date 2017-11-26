@@ -40,19 +40,15 @@ static int recoveryCounter = 0;
 
 // functions
 // network status notification
-int notice (void (*f)(int),int a,int b) {
+int notice (int a) {
 	//printf("int a = %i\n", a); //debug
 	if (a <= 0){
 		char status_1[] = {"(ノ ˘_˘)ノ　ζ|||ζ　ζ|||ζ　ζ|||ζ"};
 		printf ("NETWORK STATUS : %s\n" , status_1);
-		// calls noticeRecovery
-		(*f)(b);
 		return 10;
 	}else {
 		char status_1[] = {"⊃｡•́‿•̀｡)⊃━✿✿✿✿✿✿✿✿✿✿✿✿✿✿✿✿✿✿"};
 		printf ("NETWORK STATUS : %s\n" , status_1);
-		// calls noticeRecovery
-		(*f)(b);
 		return 10;
 	}
 
@@ -67,7 +63,7 @@ void noticeRecovery (int a) {
 	}
 }
 // pings and collects response. Special not about struct: int (a) and (c) are passed for IP and Port number
-int socktest_1(int a, char *b) {
+int socktest_1(void (*f)(int),int a, char *b) {
 	int z;
 
 		int sockfd = socket(AF_INET, SOCK_STREAM, 0);
@@ -95,7 +91,7 @@ int socktest_1(int a, char *b) {
 }
 
 
-int socktest_2(int a, char *b) {
+int socktest_2(void (*f)(int),int a, char *b,int c) {
 	int z;
 
 		int sockfd = socket(AF_INET, SOCK_STREAM, 0);
@@ -109,6 +105,8 @@ int socktest_2(int a, char *b) {
 
 			z = 0;
 			printf("Test **__FAILED__**: port: %i address: %s\n", a, b);
+			// calls noticeRecovery function
+			(*f)(c);
 			return (z);
 		}
 
@@ -116,6 +114,8 @@ int socktest_2(int a, char *b) {
 		else {
 
 			printf("Test Success: port: %i address: %s\n", a, b);
+			// calls noticeRecovery fuction
+			(*f)(c);
 			z = 1;
 		}
 		close(sockfd);
@@ -217,21 +217,21 @@ int main (void) {
 
 	//printf ("UpDown Status : %d\n", updown_1);
 	if (updown_1 !=0) {
-		notice(noticeRecovery,netcheck_1,recoveryCounter);
-		netcheck_1 = socktest_1(port_1, add_1) + socktest_2(port_1, add_2);
+		notice(netcheck_1);
+		netcheck_1 = socktest_1(noticeRecovery,port_1, add_1,recoveryCounter) + socktest_2(noticeRecovery,port_1, add_2,recoveryCounter);
 		//printf ("%i\n dogsgs\n", netcheck_1);//debug
 		//sleep(10);
 		if (netcheck_1 >=1) {
 			fail_count_1 = 0;
 			fail_status_1 = 0;
 			//printf ("netcheck %i\n updown %i\n", netcheck_1, updown_1);//debug
-			notice(noticeRecovery,netcheck_1,recoveryCounter);
+			notice(netcheck_1);
 			sleep(600);
 			system("clear");
 			main();
 
 		} else {
-			notice(noticeRecovery,netcheck_1,recoveryCounter);
+			notice(netcheck_1);
 			//printf ("netcheck %i\n updown %i\n", netcheck_1, updown_1);//debug
 			char *dhcp_wlan = cmd_maker(dhcp_cmd_2, wlan_int_1);
 			char *ps_wlan = cmd_maker(ps_cmd_1, wlan_int_1); ps_wlan = cmd_maker(ps_wlan, ps_cmd_2);
