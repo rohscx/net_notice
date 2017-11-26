@@ -58,9 +58,11 @@ int notice (int a) {
 // networkRecovery status notification
 void noticeRecovery (int a, char *b) {
 	if (a == -1){
+		// do nothing
+	} else if (a == 0) {
 		printf ("Network Doctor: NO actions needed\n");
 		printf ("External IP Address: %s\n", b);
-	}else {
+	} else {
 		printf ("Network Doctor: Corrective action teken: %i\n", a);
 		printf ("External IP Address: %s\n", b);
 	}
@@ -186,6 +188,7 @@ char* cmdRunner (char *a) {
 		buffer_out[strlen(buffer)-1] = '\0';
 		strcpy(buffer_out,buffer);
 	}
+	printf("%s", buffer_out);
 	return buffer_out;
 
 /*	int z;
