@@ -56,7 +56,7 @@ int notice (int a) {
 }
 
 // networkRecovery status notification
-void noticeRecovery (int a, char b) {
+void noticeRecovery (int a, char *b) {
 	if (a == -1){
 		printf ("Network Doctor: NO actions needed\n");
 		printf ("External IP Address: %s\n", b);
