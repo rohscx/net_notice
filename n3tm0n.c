@@ -78,7 +78,8 @@ int socktest_1(void (*f)(int), int a, char *b, int c) {
 			z = 0;
 			printf("Test **__FAILED__**: port: %i address: %s\n", a, b);
 			// calls noticeRecovery function
-			(*f)(c);
+			// extrainious on screen text commenting out. Only one needed
+			//(*f)(c);
 			return (z);
 		}
 
@@ -87,7 +88,8 @@ int socktest_1(void (*f)(int), int a, char *b, int c) {
 
 			printf("Test Success: port: %i address: %s\n", a, b);
 			// calls noticeRecovery function
-			(*f)(c);
+			// extrainious on screen text commenting out. Only one needed
+			//(*f)(c);
 			z = 1;
 		}
 		close(sockfd);
