@@ -23,7 +23,7 @@ static char wpa_cmd_1[56] = "wpa_supplicant -iwlan0 -c/etc/wpa_supplicant.conf -
 static char wpa_cmd_2[15] = "wpa_supplicant";
 static char ip_cmd_1[31] = "ip addr add 10.10.10.1/30 dev ";
 static char ip_cmd_2[31] = "ip addr del 10.10.10.1/30 dev ";
-static char ip_cmd_3[31] = "link set eth0 up ";
+static char ip_cmd_3[34] = "ip link set eth0 up ";
 static char rf_cmd_1[19] = "rfkill unblock wifi";
 static char rf_cmd_2[18] = "rfkill block wifi";
 static char kill_cmd_1[24] = "killall --ignore-case ";
@@ -33,7 +33,7 @@ static char ps_cmd_2[36] = " | grep -v grep | awk '{print $1}'";
 static char app1 [] = {"ps -A | grep -q wpa_supplicant"};
 static char app2 [] = {"ps -A | grep -q dhclient"};
 static char app3 [] = {"ps -A | grep -q rfkill"};
-static int recoveryCounter = 0;
+static int recoveryCounter = -1;
 
 
 
@@ -56,10 +56,10 @@ int notice (int a) {
 
 // networkRecovery status notification
 void noticeRecovery (int a) {
-	if (a <= 0){
-		printf ("Network Doctor has not needed to take action\n");
+	if (a == -1){
+		printf ("Network Doctor: NO actions needed\n");
 	}else {
-		printf ("Network Doctor has taken corrective actions %i times\n", a);
+		printf ("Network Doctor: Corrective action teken: %i\n", a);
 	}
 }
 // pings and collects response. Special not about struct: int (a) and (c) are passed for IP and Port number
