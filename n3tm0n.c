@@ -30,6 +30,7 @@ static char kill_cmd_1[24] = "killall --ignore-case ";
 static char kill_cmd_2[9] = "kill -9 ";
 static char ps_cmd_1[23] = "ps aux | grep --color ";
 static char ps_cmd_2[36] = " | grep -v grep | awk '{print $1}'";
+static char ps_cmd_3[52] = "ip a | greap wlan0 | cut -d: f2 | awk '{print $2}'";
 static char app1 [] = {"ps -A | grep -q wpa_supplicant"};
 static char app2 [] = {"ps -A | grep -q dhclient"};
 static char app3 [] = {"ps -A | grep -q rfkill"};
@@ -55,15 +56,17 @@ int notice (int a) {
 }
 
 // networkRecovery status notification
-void noticeRecovery (int a) {
+void noticeRecovery (int a, int b) {
 	if (a == -1){
 		printf ("Network Doctor: NO actions needed\n");
+		printf ("External IP Address: %s\n", b);
 	}else {
 		printf ("Network Doctor: Corrective action teken: %i\n", a);
+		printf ("External IP Address: %s\n", b);
 	}
 }
 // pings and collects response. Special not about struct: int (a) and (c) are passed for IP and Port number
-int socktest_1(void (*f)(int), int a, char *b, int c) {
+int socktest_1(void (*f)(int)(char), int a, char *b, int c, int d) {
 	int z;
 
 		int sockfd = socket(AF_INET, SOCK_STREAM, 0);
@@ -97,7 +100,7 @@ int socktest_1(void (*f)(int), int a, char *b, int c) {
 }
 
 
-int socktest_2(void (*f)(int), int a, char *b, int c) {
+int socktest_2(void (*f)(int)(char), int a, char *b, int c, int d) {
 	int z;
 
 		int sockfd = socket(AF_INET, SOCK_STREAM, 0);
@@ -112,7 +115,7 @@ int socktest_2(void (*f)(int), int a, char *b, int c) {
 			z = 0;
 			printf("Test **__FAILED__**: port: %i address: %s\n", a, b);
 			// calls noticeRecovery function
-			(*f)(c);
+			(*f)(c)(d);
 			return (z);
 		}
 
@@ -121,7 +124,7 @@ int socktest_2(void (*f)(int), int a, char *b, int c) {
 
 			printf("Test Success: port: %i address: %s\n", a, b);
 			// calls noticeRecovery fuction
-			(*f)(c);
+			(*f)(c)(d);
 			z = 1;
 		}
 		close(sockfd);
@@ -142,6 +145,33 @@ char* cmd_maker(const char *s1, const char *s2) {
 }
 
 char* pidfind (char *a) {
+	FILE* pipe = popen(a, "r");
+	if (pipe) {
+
+		char buffer[128];
+		while(!feof(pipe)) {
+
+			if(fgets(buffer, 128, pipe) != NULL) {}
+		}
+
+		pclose(pipe);
+		buffer[strlen(buffer)-1] = '\0';
+		buffer_out[strlen(buffer)-1] = '\0';
+		strcpy(buffer_out,buffer);
+	}
+	return buffer_out;
+
+/*	int z;
+	z = system(a);
+
+	printf("getpid var %s\n pid got %i\n", a);
+
+
+	return buffer;
+*/
+}
+
+char* cmdRunner (char *a) {
 	FILE* pipe = popen(a, "r");
 	if (pipe) {
 
@@ -219,12 +249,11 @@ int main (void) {
 	int updown_1 = 1;
 	int mustbeup = 0;
 	int netcheck_1;
-
-
+	char ipAddressWLAN0 = cmdRunner(ps_cmd_3);
 	//printf ("UpDown Status : %d\n", updown_1);
 	if (updown_1 !=0) {
 		notice(netcheck_1);
-		netcheck_1 = socktest_1(noticeRecovery,port_1, add_1,recoveryCounter) + socktest_2(noticeRecovery,port_1, add_2,recoveryCounter);
+		netcheck_1 = socktest_1(noticeRecovery, port_1, add_1, recoveryCounter) + socktest_2(noticeRecovery, port_1, add_2, recoveryCounter, ipAddressWLAN0);
 		//printf ("%i\n dogsgs\n", netcheck_1);//debug
 		//sleep(10);
 		if (netcheck_1 >=1) {
