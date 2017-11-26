@@ -62,9 +62,11 @@ void noticeRecovery (int a, char *b) {
 	} else if (a == 0) {
 		printf ("Network Doctor: NO actions needed\n");
 		printf ("External IP Address: %s\n", b);
+		printf ("ip a | greap wlan0 | cut -d: f2 | awk '{print $2}'");
 	} else {
 		printf ("Network Doctor: Corrective action teken: %i\n", a);
 		printf ("External IP Address: %s\n", b);
+		printf ("ip a | greap wlan0 | cut -d: f2 | awk '{print $2}'");
 	}
 }
 // pings and collects response. Special not about struct: int (a) and (c) are passed for IP and Port number
