@@ -99,7 +99,7 @@ int socktest_1(void (*f)(int,char *), int a, char *b, int c, char *d) {
 
 		else {
 
-			printf("%sTest Success: port: %i address: %s\n", KNRM, a, b);
+			printf("Test Success: port: %i address: %s\n", a, b);
 			// calls noticeRecovery function
 			// extrainious on screen text commenting out. Only one needed
 			//(*f)(c);
@@ -149,7 +149,7 @@ char* cmd_maker(const char *s1, const char *s2) {
 	//in real code you would check for errors in malloc here
 	memcpy(result, s1, len1);
 	memcpy(result+len1, s2, len2+1);//+1 to copy the null-terminator
-	printf ("%sRDY TO APPLY ____|:|<*-*> (%s)\n", KYEL, result);//debug
+	printf ("RDY TO APPLY ____|:|<*-*> (%s)\n", result);//debug
 	//sleep(5);//debug
 	return result;
 }
@@ -212,7 +212,7 @@ char* takedown (char *a, char *b, char *c, char *d, char *e) {
 		//printf("w1=%i system(%s) x1[%i]\n",w1,x1[y1],y1);
 	       if (w1 = 0) {
 		       system(v1[y1]);
-		       printf("%sKilling %s\n",KGRN,v1[y1]);
+		       printf("Killing %s\n",v1[y1]);
 		       sleep(2);
 	       }
 		if (y1 = 1) {
@@ -255,7 +255,9 @@ int main (void) {
 	char *ipAddressWLAN0 = cmdRunner(ps_cmd_3);
 	//printf ("UpDown Status : %d\n", updown_1);
 	if (updown_1 !=0) {
+		KGRN // text color green
 		notice(netcheck_1);
+		KNRM // text color normal
 		netcheck_1 = socktest_1(noticeRecovery, port_1, add_1, recoveryCounter, ipAddressWLAN0) + socktest_2(noticeRecovery, port_1, add_2, recoveryCounter, ipAddressWLAN0);
 		//printf ("%i\n dogsgs\n", netcheck_1);//debug
 		//sleep(10);
@@ -263,26 +265,42 @@ int main (void) {
 			fail_count_1 = 0;
 			fail_status_1 = 0;
 			//printf ("netcheck %i\n updown %i\n", netcheck_1, updown_1);//debug
+			KGRN // text color green
 			notice(netcheck_1);
+			KNRM // text color normal
 			sleep(600);
 			system("clear");
 			main();
 
 		} else {
+			KBLU // text color blue
 			notice(netcheck_1);
 			//printf ("netcheck %i\n updown %i\n", netcheck_1, updown_1);//debug
 			char *dhcp_wlan = cmd_maker(dhcp_cmd_2, wlan_int_1);
 			char *ps_wlan = cmd_maker(ps_cmd_1, wlan_int_1); ps_wlan = cmd_maker(ps_wlan, ps_cmd_2);
 			char *wlan_dhcp_pid = pidfind(ps_wlan);
 			char *dhcp_kill = cmd_maker(kill_cmd_2, wlan_dhcp_pid);
+			KNRM // text color normal
+			KRED // text color red
 			char *sup_kill = cmd_maker(kill_cmd_1, wpa_cmd_2);
+			KNRM // text color normal
+			KRED // text color red
 			char *eth_kill = cmd_maker(ip_cmd_2, eth_int_1);
+			KNRM // text color normal
+			KRED // text color red
 			//char *doctor_1 = takedown (dhcp_wlan, dhcp_kill, sup_kill, rf_cmd_2, eth_kill);
 			char *doctor_1 = takedown (sup_kill,dhcp_wlan,dhcp_kill,rf_cmd_2,eth_kill);
+			KNRM // text color normal
+			KRED // text color red
 			//printf("%s\n %s\n",sup_kill, wlan_dhcp_pid);//debug
 			char *eth_up = cmd_maker(ip_cmd_1, eth_int_1);
+			KNRM // text color normal
+			KRED // text color red
 			char *dhcp_wlan_up = cmd_maker(dhcp_cmd_1, wlan_int_1);
+			KNRM // text color normal
+			KRED // text color red
 			char *doctor_3 = bringup(rf_cmd_1, wpa_cmd_1, eth_up, dhcp_wlan_up, ip_cmd_3);
+			KNRM // text color normal
 			fail_count_1++;
 			fail_status_1 = 1;
 			recoveryCounter++;
