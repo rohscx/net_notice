@@ -217,7 +217,7 @@ int main (void) {
 
 	//printf ("UpDown Status : %d\n", updown_1);
 	if (updown_1 !=0) {
-		notice(netcheck_1);
+		notice(noticeRecovery,netcheck_1,recoveryCounter);
 		netcheck_1 = socktest_1(port_1, add_1) + socktest_2(port_1, add_2);
 		//printf ("%i\n dogsgs\n", netcheck_1);//debug
 		//sleep(10);
@@ -231,7 +231,7 @@ int main (void) {
 			main();
 
 		} else {
-			notice(netcheck_1);
+			notice(noticeRecovery,netcheck_1,recoveryCounter);
 			//printf ("netcheck %i\n updown %i\n", netcheck_1, updown_1);//debug
 			char *dhcp_wlan = cmd_maker(dhcp_cmd_2, wlan_int_1);
 			char *ps_wlan = cmd_maker(ps_cmd_1, wlan_int_1); ps_wlan = cmd_maker(ps_wlan, ps_cmd_2);
