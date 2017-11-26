@@ -249,7 +249,7 @@ int main (void) {
 	int updown_1 = 1;
 	int mustbeup = 0;
 	int netcheck_1;
-	char ipAddressWLAN0 = cmdRunner(ps_cmd_3);
+	char *ipAddressWLAN0 = cmdRunner(ps_cmd_3);
 	//printf ("UpDown Status : %d\n", updown_1);
 	if (updown_1 !=0) {
 		notice(netcheck_1);
