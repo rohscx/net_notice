@@ -10,6 +10,7 @@
 
 // variables for application
 char status_1[8];
+char buffer_out [150];
 static char add_1[11] = "8.8.4.4";
 static char add_2[11] = "8.8.8.8";
 static int port_1 = 53;
@@ -32,23 +33,38 @@ static char ps_cmd_2[36] = " | grep -v grep | awk '{print $1}'";
 static char app1 [] = {"ps -A | grep -q wpa_supplicant"};
 static char app2 [] = {"ps -A | grep -q dhclient"};
 static char app3 [] = {"ps -A | grep -q rfkill"};
-char buffer_out [150];
+static int recoveryCounter = 0;
+
+
 
 
 // functions
 // network status notification
-int notice (int a) {
+int notice (void (*f)(int),int a,int b) {
 	//printf("int a = %i\n", a); //debug
 	if (a <= 0){
 		char status_1[] = {"(ノ ˘_˘)ノ　ζ|||ζ　ζ|||ζ　ζ|||ζ"};
 		printf ("NETWORK STATUS : %s\n" , status_1);
+		// calls noticeRecovery
+		(*f)(b);
 		return 10;
 	}else {
 		char status_1[] = {"⊃｡•́‿•̀｡)⊃━✿✿✿✿✿✿✿✿✿✿✿✿✿✿✿✿✿✿"};
 		printf ("NETWORK STATUS : %s\n" , status_1);
+		// calls noticeRecovery
+		(*f)(b);
 		return 10;
 	}
 
+}
+
+// networkRecovery status notification
+void noticeRecovery (int a) {
+	if (a <= 0){
+		printf ("Network Doctor has not needed to take action\n");
+	}else {
+		printf "Network Doctor has taken corrective actions %i times\n" , a);
+	}
 }
 // pings and collects response. Special not about struct: int (a) and (c) are passed for IP and Port number
 int socktest_1(int a, char *b) {
@@ -231,6 +247,7 @@ int main (void) {
 			char *doctor_3 = bringup(rf_cmd_1, wpa_cmd_1, eth_up, dhcp_wlan_up, ip_cmd_3);
 			fail_count_1++;
 			fail_status_1 = 1;
+			recoveryCounter++;
 
 		}
 	}
