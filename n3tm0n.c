@@ -63,7 +63,7 @@ void noticeRecovery (int a) {
 	if (a <= 0){
 		printf ("Network Doctor has not needed to take action\n");
 	}else {
-		printf "Network Doctor has taken corrective actions %i times\n" , a);
+		printf ("Network Doctor has taken corrective actions %i times\n") , a);
 	}
 }
 // pings and collects response. Special not about struct: int (a) and (c) are passed for IP and Port number
@@ -225,7 +225,7 @@ int main (void) {
 			fail_count_1 = 0;
 			fail_status_1 = 0;
 			//printf ("netcheck %i\n updown %i\n", netcheck_1, updown_1);//debug
-			notice(netcheck_1);
+			notice(noticeRecovery,netcheck_1,recoveryCounter);
 			sleep(600);
 			system("clear");
 			main();
