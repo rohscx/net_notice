@@ -30,7 +30,7 @@ static char kill_cmd_1[24] = "killall --ignore-case ";
 static char kill_cmd_2[9] = "kill -9 ";
 static char ps_cmd_1[23] = "ps aux | grep --color ";
 static char ps_cmd_2[36] = " | grep -v grep | awk '{print $1}'";
-static char ps_cmd_3[52] = "ip a | greap wlan0 | cut -d: f2 | awk '{print $2}'";
+static char ps_cmd_3[52] = "ip a | grep wlan0 | cut -d: f2 | awk '{print $2}'";
 static char app1 [] = {"ps -A | grep -q wpa_supplicant"};
 static char app2 [] = {"ps -A | grep -q dhclient"};
 static char app3 [] = {"ps -A | grep -q rfkill"};
@@ -62,11 +62,9 @@ void noticeRecovery (int a, char *b) {
 	} else if (a == 0) {
 		printf ("Network Doctor: NO actions needed\n");
 		printf ("External IP Address: %s\n", b);
-		printf ("ip a | greap wlan0 | cut -d: f2 | awk '{print $2}'");
 	} else {
 		printf ("Network Doctor: Corrective action teken: %i\n", a);
 		printf ("External IP Address: %s\n", b);
-		printf ("ip a | greap wlan0 | cut -d: f2 | awk '{print $2}'");
 	}
 }
 // pings and collects response. Special not about struct: int (a) and (c) are passed for IP and Port number
