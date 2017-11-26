@@ -66,7 +66,7 @@ void noticeRecovery (int a, char b) {
 	}
 }
 // pings and collects response. Special not about struct: int (a) and (c) are passed for IP and Port number
-int socktest_1(void (*f)(int)(char), int a, char *b, int c, int d) {
+int socktest_1(void (*f)(int,char), int a, char *b, int c, int d) {
 	int z;
 
 		int sockfd = socket(AF_INET, SOCK_STREAM, 0);
@@ -100,7 +100,7 @@ int socktest_1(void (*f)(int)(char), int a, char *b, int c, int d) {
 }
 
 
-int socktest_2(void (*f)(int)(char), int a, char *b, int c, int d) {
+int socktest_2(void (*f)(int,char), int a, char *b, int c, int d) {
 	int z;
 
 		int sockfd = socket(AF_INET, SOCK_STREAM, 0);
@@ -115,7 +115,7 @@ int socktest_2(void (*f)(int)(char), int a, char *b, int c, int d) {
 			z = 0;
 			printf("Test **__FAILED__**: port: %i address: %s\n", a, b);
 			// calls noticeRecovery function
-			(*f)(c)(d);
+			(*f)(c,d);
 			return (z);
 		}
 
@@ -124,7 +124,7 @@ int socktest_2(void (*f)(int)(char), int a, char *b, int c, int d) {
 
 			printf("Test Success: port: %i address: %s\n", a, b);
 			// calls noticeRecovery fuction
-			(*f)(c)(d);
+			(*f)(c,d);
 			z = 1;
 		}
 		close(sockfd);
