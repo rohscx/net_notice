@@ -255,9 +255,11 @@ int main (void) {
 	char *ipAddressWLAN0 = cmdRunner(ps_cmd_3);
 	//printf ("UpDown Status : %d\n", updown_1);
 	if (updown_1 !=0) {
-		KGRN; // text color green
+		// text color green
+		printf ("%s.\n", KGRN);
 		notice(netcheck_1);
-		KNRM; // text color normal
+		// text color normal
+		printf ("%s.\n", KNRM);
 		netcheck_1 = socktest_1(noticeRecovery, port_1, add_1, recoveryCounter, ipAddressWLAN0) + socktest_2(noticeRecovery, port_1, add_2, recoveryCounter, ipAddressWLAN0);
 		//printf ("%i\n dogsgs\n", netcheck_1);//debug
 		//sleep(10);
@@ -265,9 +267,11 @@ int main (void) {
 			fail_count_1 = 0;
 			fail_status_1 = 0;
 			//printf ("netcheck %i\n updown %i\n", netcheck_1, updown_1);//debug
-			KGRN; // text color green
+			// text color green
+			printf ("%s.\n", KGRN);
 			notice(netcheck_1);
-			KNRM; // text color normal
+			// text color normal
+			printf ("%s.\n", KNRM);
 			sleep(600);
 			system("clear");
 			main();
@@ -280,27 +284,40 @@ int main (void) {
 			char *ps_wlan = cmd_maker(ps_cmd_1, wlan_int_1); ps_wlan = cmd_maker(ps_wlan, ps_cmd_2);
 			char *wlan_dhcp_pid = pidfind(ps_wlan);
 			char *dhcp_kill = cmd_maker(kill_cmd_2, wlan_dhcp_pid);
-			KNRM; // text color normal
-			KRED; // text color red
+			// text color normal
+			printf ("%s.\n", KNRM);
+			// text color red
+			printf ("%s.\n", KRED);
 			char *sup_kill = cmd_maker(kill_cmd_1, wpa_cmd_2);
-			KNRM; // text color normal
-			KRED; // text color red
+			// text color normal
+			printf ("%s.\n", KNRM);
+			// text color red
+			printf ("%s.\n", KRED);
 			char *eth_kill = cmd_maker(ip_cmd_2, eth_int_1);
-			KNRM; // text color normal
-			KRED; // text color red
+			// text color normal
+			printf ("%s.\n", KNRM);
+			// text color red
+			printf ("%s.\n", KRED);
 			//char *doctor_1 = takedown (dhcp_wlan, dhcp_kill, sup_kill, rf_cmd_2, eth_kill);
 			char *doctor_1 = takedown (sup_kill,dhcp_wlan,dhcp_kill,rf_cmd_2,eth_kill);
-			KNRM; // text color normal
-			KRED; // text color red
+			// text color normal
+			printf ("%s.\n", KNRM);
+			// text color yellow
+			printf ("%s.\n", KYEL);
 			//printf("%s\n %s\n",sup_kill, wlan_dhcp_pid);//debug
 			char *eth_up = cmd_maker(ip_cmd_1, eth_int_1);
-			KNRM; // text color normal
-			KRED; // text color red
+			// text color normal
+			printf ("%s.\n", KNRM);
+			// text color yellow
+			printf ("%s.\n", KYEL);
 			char *dhcp_wlan_up = cmd_maker(dhcp_cmd_1, wlan_int_1);
-			KNRM; // text color normal
-			KRED; // text color red
+			// text color normal
+			printf ("%s.\n", KNRM);
+			// text color yellow
+			printf ("%s.\n", KYEL);
 			char *doctor_3 = bringup(rf_cmd_1, wpa_cmd_1, eth_up, dhcp_wlan_up, ip_cmd_3);
-			KNRM; // text color normal
+			// text color normal
+			printf ("%s.\n", KNRM);
 			fail_count_1++;
 			fail_status_1 = 1;
 			recoveryCounter++;
