@@ -149,7 +149,11 @@ char* cmd_maker(const char *s1, const char *s2) {
 	//in real code you would check for errors in malloc here
 	memcpy(result, s1, len1);
 	memcpy(result+len1, s2, len2+1);//+1 to copy the null-terminator
+	// text color yellow
+	printf ("%s.\n", KYEL);
 	printf ("RDY TO APPLY ____|:|<*-*> (%s)\n", result);//debug
+	// text color normal
+	printf ("%s.\n", KNRM);
 	//sleep(5);//debug
 	return result;
 }
@@ -212,13 +216,17 @@ char* takedown (char *a, char *b, char *c, char *d, char *e) {
 		//printf("w1=%i system(%s) x1[%i]\n",w1,x1[y1],y1);
 	       if (w1 = 0) {
 		       system(v1[y1]);
+					 printf ("%s.\n", KRED);
 		       printf("Killing %s\n",v1[y1]);
+					 printf ("%s.\n", KNRM);
 		       sleep(2);
 	       }
 		if (y1 = 1) {
 			for (y1 = 1; y1 < 4; y1++) {
 				system(v1[y1]);
+				printf ("%s.\n", KRED);
 				printf("BRINGING DOWN ____|:|<*-*> (%s)\n",v1[y1]);
+				printf ("%s.\n", KNRM);
 				sleep(2);
 			}
 			y1 = 5;
@@ -237,7 +245,11 @@ char* bringup (char *a, char *b, char *c, char *d, char *e) {
 	char* v1[] = {a,b,c,d,e};
 	for (y1 = 0; y1 < 5; y1++) {
 		system(v1[y1]);
+		// text color yellow
+		printf ("%s.\n", KYEL);
 		printf("BRINGING UP ____|:|<*-*> (%s)\n", v1[y1]);
+		// text color normal
+		printf ("%s.\n", KNRM);
 		sleep(4);
 
 	}
@@ -284,37 +296,13 @@ int main (void) {
 			char *ps_wlan = cmd_maker(ps_cmd_1, wlan_int_1); ps_wlan = cmd_maker(ps_wlan, ps_cmd_2);
 			char *wlan_dhcp_pid = pidfind(ps_wlan);
 			char *dhcp_kill = cmd_maker(kill_cmd_2, wlan_dhcp_pid);
-			// text color normal
-			printf ("%s.\n", KNRM);
-			// text color red
-			printf ("%s.\n", KRED);
 			char *sup_kill = cmd_maker(kill_cmd_1, wpa_cmd_2);
-			// text color normal
-			printf ("%s.\n", KNRM);
-			// text color red
-			printf ("%s.\n", KRED);
 			char *eth_kill = cmd_maker(ip_cmd_2, eth_int_1);
-			// text color normal
-			printf ("%s.\n", KNRM);
-			// text color red
-			printf ("%s.\n", KRED);
 			//char *doctor_1 = takedown (dhcp_wlan, dhcp_kill, sup_kill, rf_cmd_2, eth_kill);
 			char *doctor_1 = takedown (sup_kill,dhcp_wlan,dhcp_kill,rf_cmd_2,eth_kill);
-			// text color normal
-			printf ("%s.\n", KNRM);
-			// text color yellow
-			printf ("%s.\n", KYEL);
 			//printf("%s\n %s\n",sup_kill, wlan_dhcp_pid);//debug
 			char *eth_up = cmd_maker(ip_cmd_1, eth_int_1);
-			// text color normal
-			printf ("%s.\n", KNRM);
-			// text color yellow
-			printf ("%s.\n", KYEL);
 			char *dhcp_wlan_up = cmd_maker(dhcp_cmd_1, wlan_int_1);
-			// text color normal
-			printf ("%s.\n", KNRM);
-			// text color yellow
-			printf ("%s.\n", KYEL);
 			char *doctor_3 = bringup(rf_cmd_1, wpa_cmd_1, eth_up, dhcp_wlan_up, ip_cmd_3);
 			// text color normal
 			printf ("%s.\n", KNRM);
