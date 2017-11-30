@@ -66,19 +66,21 @@ int notice (int a) {
 }
 
 // networkRecovery status notification
-void noticeRecovery (int a, char *b) {
+void noticeRecovery (int a, char *b, char *c) {
 	if (a == -1){
 		// do nothing
 	} else if (a == 0) {
 		printf ("Network Doctor: NO actions needed\n");
 		printf ("External IP Address: %s\n", b);
+		printf ("Internal IP Address: %s\n", c);
 	} else {
 		printf ("Network Doctor: Corrective action teken: %i\n", a);
 		printf ("External IP Address: %s\n", b);
+		printf ("Internal IP Address: %s\n", c);
 	}
 }
 // pings and collects response. Special not about struct: int (a) and (c) are passed for IP and Port number
-int socktest_1(void (*f)(int,char *), int a, char *b, int c, char *d) {
+int socktest_1(void (*f)(int,char *), int a, char *b, int c, char *d, char *e) {
 	int z;
 
 		int sockfd = socket(AF_INET, SOCK_STREAM, 0);
@@ -112,7 +114,7 @@ int socktest_1(void (*f)(int,char *), int a, char *b, int c, char *d) {
 }
 
 
-int socktest_2(void (*f)(int,char *), int a, char *b, int c, char *d) {
+int socktest_2(void (*f)(int,char *), int a, char *b, int c, char *d, char *e) {
 	int z;
 
 		int sockfd = socket(AF_INET, SOCK_STREAM, 0);
@@ -127,7 +129,7 @@ int socktest_2(void (*f)(int,char *), int a, char *b, int c, char *d) {
 			z = 0;
 			printf("Test **__FAILED__**: port: %i address: %s\n", a, b);
 			// calls noticeRecovery function
-			(*f)(c,d);
+			(*f)(c,d,e);
 			return (z);
 		}
 
@@ -136,7 +138,7 @@ int socktest_2(void (*f)(int,char *), int a, char *b, int c, char *d) {
 
 			printf("Test Success: port: %i address: %s\n", a, b);
 			// calls noticeRecovery fuction
-			(*f)(c,d);
+			(*f)(c,d,e);
 			z = 1;
 		}
 		close(sockfd);
@@ -267,6 +269,7 @@ int main (void) {
 	int mustbeup = 0;
 	int netcheck_1;
 	char *ipAddressWLAN0 = cmdRunner(ps_cmd_3);
+	char *ipAddressETH0 = cmdRunner(ps_cmd_4);
 	//printf ("UpDown Status : %d\n", updown_1);
 	if (updown_1 !=0) {
 		// text color green
@@ -274,7 +277,7 @@ int main (void) {
 		notice(netcheck_1);
 		// text color normal
 		printf ("%s.\n", KNRM);
-		netcheck_1 = socktest_1(noticeRecovery, port_1, add_1, recoveryCounter, ipAddressWLAN0) + socktest_2(noticeRecovery, port_1, add_2, recoveryCounter, ipAddressWLAN0);
+		netcheck_1 = socktest_1(noticeRecovery, port_1, add_1, recoveryCounter, ipAddressWLAN0, ipAddressETH0) + socktest_2(noticeRecovery, port_1, add_2, recoveryCounter, ipAddressWLAN0, ipAddressETH0);
 		//printf ("%i\n dogsgs\n", netcheck_1);//debug
 		//sleep(10);
 		if (netcheck_1 >=1) {
