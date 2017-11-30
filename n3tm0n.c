@@ -205,7 +205,7 @@ char* cmdRunner (char *a) {
 		strcpy(buffer_out,buffer);
 	}
 	// debug
-	//printf("%s", buffer_out);
+	printf("%s", buffer_out);
 	return buffer_out;
 }
 
