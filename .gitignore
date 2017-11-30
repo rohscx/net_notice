@@ -1,1 +1,2 @@
-logs/
+!logs/readMe.txt
+logs/*
