@@ -1,8 +1,8 @@
 char* cmdRunner (char *a) {
 	FILE *fp;
 	int status;
-	pid_t return_pid = waitpid(getpid(), &status, WNOHANG); /* WNOHANG def'd in wait.h */
-	printf ("Begining pid: %i\n",getpid());
+	// debug
+	printf ("This is the PID: %i\n",getpid());
 	char buffer[255];
 	char *str_to_ret = malloc (sizeof (char) * 50);
 
@@ -24,21 +24,12 @@ char* cmdRunner (char *a) {
 	status = pclose(fp);
 	if (status == -1) {
 	    /* Error reported by pclose() */
+			printf ("This is the PID: %i\n",getpid());
 	    printf("error reported in pclose");
+
 	} else {
 	    /* Use macros described under wait() to inspect `status' in order
 	       to determine success/failure of command executed by popen() */
-		 if (return_pid == -1) {
-		     /* error */
-				 printf("pid error -1 %i\n",getpid());
-		 } else if (return_pid == 0) {
-		     /* child is still running */
-				 printf("still running %i\n",getpid());
-		 } else if (return_pid == getpid()) {
-		     /* child is finished. exit status in   status */
-				 printf("finished running\n");
-				 printf ("End pid: %i\n",getpid());
-				 return str_to_ret;
-		 }
+		 return str_to_ret;
 	}
 }
