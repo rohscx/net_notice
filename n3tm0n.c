@@ -205,7 +205,7 @@ char* cmdRunner (char *a) {
 		buffer_out[strlen(buffer)-1] = '\0';
 		strcpy(buffer_out,buffer);
 	}
-	printf("%s", buffer_out);
+	//printf("%s", buffer_out);
 	return buffer_out;
 }
 
@@ -268,10 +268,8 @@ int main (void) {
 	int updown_1 = 1;
 	int mustbeup = 0;
 	int netcheck_1;
-	char temp1 = cmdRunner(ps_cmd_3);
-	char temp2 = cmdRunner(ps_cmd_4);
-	char *ipAddressWLAN0 = temp1 char;
-	char *ipAddressETH0 = temp2 char;
+	char *ipAddressWLAN0 = cmdRunner(ps_cmd_3);
+	char *ipAddressETH0 = cmdRunner(ps_cmd_4);
 	//printf ("UpDown Status : %d\n", updown_1);
 	printf ("ipAddressWLAN0 : %s\n", ipAddressWLAN0);
 	printf ("ipAddressETH0 : %s\n", ipAddressETH0);
