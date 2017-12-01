@@ -190,23 +190,44 @@ char* pidfind (char *a) {
 }
 
 char* cmdRunner (char *a) {
+	FILE *fp;
+	int status;
+	char path[PATH_MAX];
 
-	FILE* pipe = popen(a, "r");
-	if (pipe) {
 
-		char buffer[128];
-		while(!feof(pipe)) {
+	fp = popen(a, "r");
+	if (fp == NULL)
+	    /* Handle error */;
+			printf("error FP Null!");
 
-			if(fgets(buffer, 128, pipe) != NULL) {}
-		}
+	while (fgets(path, PATH_MAX, fp) != NULL)
+	    printf("%s", path);
 
-		pclose(pipe);
-		buffer[strlen(buffer)-1] = '\0';
-		buffer_out[strlen(buffer)-1] = '\0';
-		strcpy(buffer_out,buffer);
+
+	status = pclose(fp);
+	if (status == -1) {
+	    /* Error reported by pclose() */
+	    printf("error reported in pclose");
+	} else {
+	    /* Use macros described under wait() to inspect `status' in order
+	       to determine success/failure of command executed by popen() */
+	    return status;
 	}
-	printf("%s", buffer_out);
-	return buffer_out;
+}
+
+
+{
+    int fd;
+    char * myfifo = "/tmp/myfifo";
+    char buf[MAX_BUF];
+
+    /* open, read, and display the message from the FIFO */
+    fd = open(myfifo, O_RDONLY);
+    read(fd, buf, MAX_BUF);
+    printf("Received: %s\n", buf);
+    close(fd);
+
+    return 0;
 }
 
 char* takedown (char *a, char *b, char *c, char *d, char *e) {
