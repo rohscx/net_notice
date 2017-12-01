@@ -190,7 +190,9 @@ char* pidfind (char *a) {
 }
 
 char* cmdRunner (char *a) {
+	/* first flush stdout */
 	fflush(stdout);
+
 	FILE* pipe = popen(a, "r");
 	if (pipe) {
 
@@ -271,13 +273,12 @@ int main (void) {
 	int mustbeup = 0;
 	int netcheck_1;
 	char *ipAddressWLAN0 = cmdRunner(ps_cmd_3);
+	sleep(5);
 	char *ipAddressETH0 = cmdRunner(ps_cmd_4);
 	//printf ("UpDown Status : %d\n", updown_1);
 	printf ("ipAddressWLAN0 : %s\n", ipAddressWLAN0);
 	printf ("ipAddressETH0 : %s\n", ipAddressETH0);
 	if (updown_1 !=0) {
-		printf ("ipAddressWLAN0 : %s\n", ipAddressWLAN0);
-		printf ("ipAddressETH0 : %s\n", ipAddressETH0);
 		// text color green
 		printf ("%s.\n", KGRN);
 		notice(netcheck_1);
