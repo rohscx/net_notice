@@ -26,7 +26,12 @@ char* cmdRunner (char *a) {
 	} else {
 	    /* Use macros described under wait() to inspect `status' in order
 	       to determine success/failure of command executed by popen() */
-			wait(2);
+			if (wait(&status) >= 0) {
+			    if (WEXITED(status)) {
+			        /* Child process exited normally, through `return` or `exit` */
+			        printf("Child process exited with %d status\n", WEXITSTATUS(status));
+			    }
+			}
 			return str_to_ret;
 	}
 }
