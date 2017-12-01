@@ -215,20 +215,6 @@ char* cmdRunner (char *a) {
 }
 
 
-{
-    int fd;
-    char * myfifo = "/tmp/myfifo";
-    char buf[MAX_BUF];
-
-    /* open, read, and display the message from the FIFO */
-    fd = open(myfifo, O_RDONLY);
-    read(fd, buf, MAX_BUF);
-    printf("Received: %s\n", buf);
-    close(fd);
-
-    return 0;
-}
-
 char* takedown (char *a, char *b, char *c, char *d, char *e) {
 	//kind of complicated and I have forgotton how it works...
 	int z1,y1,w1;
