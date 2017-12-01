@@ -2,7 +2,7 @@ char* cmdRunner (char *a) {
 	FILE *fp;
 	int status;
 	char path[255];
-	char buffer_out[255];
+	char *str_to_ret = malloc (sizeof (char) * required_size);
 
 	fp = popen(a, "r");
 	if (fp == NULL)
@@ -11,7 +11,7 @@ char* cmdRunner (char *a) {
 
 	while (fgets(path, 255, fp) != NULL)
 	    printf("%s", path);
-			strcpy(buffer_out,path);
+			strcpy(str_to_ret,path);
 			printf("buffer_out  %s", buffer_out);
 	status = pclose(fp);
 	if (status == -1) {
@@ -20,6 +20,6 @@ char* cmdRunner (char *a) {
 	} else {
 	    /* Use macros described under wait() to inspect `status' in order
 	       to determine success/failure of command executed by popen() */
-			return buffer_out;
+			return str_to_ret;
 	}
 }
