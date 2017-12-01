@@ -205,7 +205,7 @@ char* cmdRunner (char *a) {
 		buffer_out[strlen(buffer)-1] = '\0';
 		strcpy(buffer_out,buffer);
 	}
-	close(pipe[1]);
+	close(0);
 	// debug
 	printf("%s", buffer_out);
 	return buffer_out;
