@@ -38,8 +38,8 @@ static char kill_cmd_1[24] = "killall --ignore-case ";
 static char kill_cmd_2[11] = "kill -9 ";
 static char ps_cmd_1[23] = "ps aux | grep --color ";
 static char ps_cmd_2[36] = " | grep -v grep | awk '{print $2}'";
-static char ps_cmd_3[52] = "ip a | grep wlan0 | cut -d: -f2 | awk '{print $2}'";
-static char ps_cmd_4[52] = "ip a | grep eth0 | cut -d: -f2 | awk '{print $2}'";
+static char ps_cmd_3[55] = "ip a | grep wlan0 | cut -d: -f2 | awk '{print $2}'";
+static char ps_cmd_4[55] = "ip a | grep eth0 | cut -d: -f2 | awk '{print $2}'";
 static char ps_cmd_5[64] = "ip a | grep wpa_supplicant | cut -d: -f2 | awk '{print $2}'";
 static char app1 [] = {"ps -A | grep -q wpa_supplicant"};
 static char app2 [] = {"ps -A | grep -q dhclient"};
@@ -205,7 +205,7 @@ char* cmdRunner (char *a) {
 		buffer_out[strlen(buffer)-1] = '\0';
 		strcpy(buffer_out,buffer);
 	}
-	//printf("%s", buffer_out);
+	printf("%s", buffer_out);
 	return buffer_out;
 }
 
