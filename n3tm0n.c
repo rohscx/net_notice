@@ -190,6 +190,7 @@ char* pidfind (char *a) {
 }
 
 char* cmdRunner (char *a) {
+	fflush(stdout);
 	FILE* pipe = popen(a, "r");
 	if (pipe) {
 
@@ -205,7 +206,6 @@ char* cmdRunner (char *a) {
 		buffer_out[strlen(buffer)-1] = '\0';
 		strcpy(buffer_out,buffer);
 	}
-	close(0);
 	// debug
 	printf("%s", buffer_out);
 	return buffer_out;
