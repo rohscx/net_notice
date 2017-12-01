@@ -192,7 +192,7 @@ char* pidfind (char *a) {
 char* cmdRunner (char *a) {
 	FILE *fp;
 	int status;
-	char path[PATH_MAX];
+	char path[255];
 
 
 	fp = popen(a, "r");
@@ -200,7 +200,7 @@ char* cmdRunner (char *a) {
 	    /* Handle error */;
 			printf("error FP Null!");
 
-	while (fgets(path, PATH_MAX, fp) != NULL)
+	while (fgets(path, 255, fp) != NULL)
 	    printf("%s", path);
 
 
