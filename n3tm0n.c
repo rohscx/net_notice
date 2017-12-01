@@ -274,6 +274,8 @@ int main (void) {
 	printf ("ipAddressWLAN0 : %s\n", ipAddressWLAN0);
 	printf ("ipAddressETH0 : %s\n", ipAddressETH0);
 	if (updown_1 !=0) {
+		printf ("ipAddressWLAN0 : %s\n", ipAddressWLAN0);
+		printf ("ipAddressETH0 : %s\n", ipAddressETH0);
 		// text color green
 		printf ("%s.\n", KGRN);
 		notice(netcheck_1);
