@@ -2,6 +2,7 @@ char* cmdRunner (char *a) {
 	FILE *fp;
 	int status;
 	char path[255];
+	char buffer_out[255];
 
 	fp = popen(a, "r");
 	if (fp == NULL)
