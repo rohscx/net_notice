@@ -268,8 +268,10 @@ int main (void) {
 	int updown_1 = 1;
 	int mustbeup = 0;
 	int netcheck_1;
-	char ipAddressWLAN0 = cmdRunner(ps_cmd_3);
-	char ipAddressETH0 = cmdRunner(ps_cmd_4);
+	char temp1 = cmdRunner(ps_cmd_3);
+	char temp2 = cmdRunner(ps_cmd_4);
+	char *ipAddressWLAN0 = temp1;
+	char *ipAddressETH0 = temp2;
 	//printf ("UpDown Status : %d\n", updown_1);
 	printf ("ipAddressWLAN0 : %s\n", ipAddressWLAN0);
 	printf ("ipAddressETH0 : %s\n", ipAddressETH0);
