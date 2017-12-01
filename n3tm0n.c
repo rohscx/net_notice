@@ -8,7 +8,6 @@
 #include <netinet/in.h> // socket open checking commands
 #include <arpa/inet.h> // socket open checkking commands
 #include <errno.h> // strerror output
-#include <sys/wait.h> // handles wait commands
 #define KNRM  "\x1B[0m" // text color normal
 #define KRED  "\x1B[31m" // text color red
 #define KGRN  "\x1B[32m" // text color green

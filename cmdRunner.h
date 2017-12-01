@@ -1,6 +1,7 @@
 char* cmdRunner (char *a) {
 	FILE *fp;
 	int status;
+	pid_t return_pid = waitpid(process_id, &status, WNOHANG); /* WNOHANG def'd in wait.h */
 	char buffer[255];
 	char *str_to_ret = malloc (sizeof (char) * 50);
 
@@ -26,12 +27,16 @@ char* cmdRunner (char *a) {
 	} else {
 	    /* Use macros described under wait() to inspect `status' in order
 	       to determine success/failure of command executed by popen() */
-			if (wait(&status) >= 0) {
-			    if (WEXITED(status)) {
-			        /* Child process exited normally, through `return` or `exit` */
-			        printf("Child process exited with %d status\n", WEXITSTATUS(status));
-			    }
-			}
-			return str_to_ret;
+		 if (return_pid == -1) {
+		     /* error */
+				 printf("pid error -1");
+		 } else if (return_pid == 0) {
+		     /* child is still running */
+				 printf("still running");
+		 } else if (return_pid == process_id) {
+		     /* child is finished. exit status in   status */
+				 printf("finished running\n");
+				 return str_to_ret;
+		 }
 	}
 }
