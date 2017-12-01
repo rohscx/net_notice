@@ -203,8 +203,6 @@ char* cmdRunner (char *a) {
 	    printf("%s", path);
 			strcpy(buffer_out,path);
 			printf("buffer_out  %s", buffer_out);
-			cout << path;
-			printf("cout  %s", cout);
 	status = pclose(fp);
 	if (status == -1) {
 	    /* Error reported by pclose() */
@@ -213,8 +211,8 @@ char* cmdRunner (char *a) {
 	    /* Use macros described under wait() to inspect `status' in order
 	       to determine success/failure of command executed by popen() */
 
-			return buffer_out;
 	}
+	printf("buffer_out  %s", buffer_out);
 }
 
 
