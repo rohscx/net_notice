@@ -4,7 +4,7 @@ char* cmdRunner (char *a) {
 	char buffer[255];
 	char *str_to_ret = malloc (sizeof (char) * 50);
 
-	fp = popen(a, "w");
+	fp = popen(a, "r");
 	if (fp == NULL)
 	    /* Handle error */;
 			printf("error FP Null!");
