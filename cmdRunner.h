@@ -8,6 +8,7 @@ char* cmdRunner (char *a) {
 	if (fp == NULL)
 	    /* Handle error */;
 			printf("error FP Null!");
+			printf ("Error opening: %s\n",strerror(errno));
 
 	while (fgets(buffer, 255, fp) != NULL)
 		 /* Used to trim blank spaces */
