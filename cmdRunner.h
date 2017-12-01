@@ -9,9 +9,11 @@ char* cmdRunner (char *a) {
 	    /* Handle error */;
 			printf("error FP Null!");
 
-	while (fgets(path, 255, fp) != NULL)
-	    printf("%s", path);
-			strcpy(str_to_ret,path);
+	while (fgets(buffer, 255, fp) != NULL)
+			buffer[strlen(buffer)-1] = '\0';
+			buffer_out[strlen(buffer)-1] = '\0';
+	    printf("%s", buffer);
+			strcpy(str_to_ret,buffer);
 			printf("buffer_out  %s", str_to_ret);
 	status = pclose(fp);
 	if (status == -1) {
