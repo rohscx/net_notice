@@ -5,7 +5,7 @@ char* cmdRunner (char *a) {
 	char *str_to_ret = malloc (sizeof (char) * 50);
 
 	fp = popen(a, "r");
-	if (fp == "Success")
+	if (fp == Null)
 	    /* Handle error */;
 			printf ("Error opening: %s\n",strerror(errno));
 
