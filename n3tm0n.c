@@ -200,6 +200,7 @@ char* cmdRunner (char *a) {
 		}
 
 		pclose(pipe);
+		close(pipe);
 		buffer[strlen(buffer)-1] = '\0';
 		buffer_out[strlen(buffer)-1] = '\0';
 		strcpy(buffer_out,buffer);
@@ -231,7 +232,7 @@ char* takedown (char *a, char *b, char *c, char *d, char *e) {
 				printf ("%s.\n", KRED);
 				printf("BRINGING DOWN ____|:|<*-*> (%s)\n",v1[y1]);
 				printf ("%s.\n", KNRM);
-				sleep(2);
+				sleep(1);
 			}
 			y1 = 5;
 		}
@@ -254,7 +255,7 @@ char* bringup (char *a, char *b, char *c, char *d, char *e) {
 		printf("BRINGING UP ____|:|<*-*> (%s)\n", v1[y1]);
 		// text color normal
 		printf ("%s.\n", KNRM);
-		sleep(4);
+		sleep(1);
 
 	}
 
