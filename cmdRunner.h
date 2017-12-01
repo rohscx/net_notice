@@ -5,7 +5,7 @@ char* cmdRunner (char *a) {
 	char *str_to_ret = malloc (sizeof (char) * 50);
 
 	fp = popen(a, "r");
-	if (fp == NULL)
+	if (fp != NULL)
 	    /* Handle error */;
 			printf ("Error opening: %s\n",strerror(errno));
 
@@ -26,6 +26,7 @@ char* cmdRunner (char *a) {
 	} else {
 	    /* Use macros described under wait() to inspect `status' in order
 	       to determine success/failure of command executed by popen() */
+			wait(2);
 			return str_to_ret;
 	}
 }
