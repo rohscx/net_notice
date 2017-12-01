@@ -11,7 +11,7 @@ char* cmdRunner (char *a) {
 
 	while (fgets(buffer, 255, fp) != NULL)
 			buffer[strlen(buffer)-1] = '\0';
-			buffer_out[strlen(buffer)-1] = '\0';
+			str_to_ret[strlen(buffer)-1] = '\0';
 	    printf("%s", buffer);
 			strcpy(str_to_ret,buffer);
 			printf("buffer_out  %s", str_to_ret);
