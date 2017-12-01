@@ -5,9 +5,8 @@ char* cmdRunner (char *a) {
 	char *str_to_ret = malloc (sizeof (char) * 50);
 
 	fp = popen(a, "r");
-	if (fp == NULL)
+	if (fp == "Success")
 	    /* Handle error */;
-			printf("error FP Null!");
 			printf ("Error opening: %s\n",strerror(errno));
 
 	while (fgets(buffer, 255, fp) != NULL)
