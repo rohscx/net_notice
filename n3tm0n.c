@@ -209,7 +209,7 @@ char* cmdRunner (char *a) {
 		strcpy(buffer_out,buffer);
 	}
 	// debug
-	close(pipe[1]);
+	close(pipe1);
 	fflush(stdout);
 	printf("%s", buffer_out);
 	return buffer_out;
