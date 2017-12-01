@@ -15,6 +15,7 @@
 #define KMAG  "\x1B[35m" // text color magenta
 #define KCYN  "\x1B[36m" // text color cyan
 #define KWHT  "\x1B[37m" // text color white
+#include "cmdRunner.h" // command Runner file
 
 // variables for application
 char status_1[8];
@@ -187,32 +188,6 @@ char* pidfind (char *a) {
 
 	return buffer;
 */
-}
-
-char* cmdRunner (char *a) {
-	FILE *fp;
-	int status;
-	char path[255];
-
-	fp = popen(a, "r");
-	if (fp == NULL)
-	    /* Handle error */;
-			printf("error FP Null!");
-
-	while (fgets(path, 255, fp) != NULL)
-	    printf("%s", path);
-			strcpy(buffer_out,path);
-			printf("buffer_out  %s", buffer_out);
-	status = pclose(fp);
-	if (status == -1) {
-	    /* Error reported by pclose() */
-	    printf("error reported in pclose");
-	} else {
-	    /* Use macros described under wait() to inspect `status' in order
-	       to determine success/failure of command executed by popen() */
-
-	}
-	printf("buffer_out  %s", buffer_out);
 }
 
 
