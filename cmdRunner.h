@@ -1,19 +1,14 @@
 char* cmdRunner (char *a) {
 	FILE *fp;
 	int status;
-	// debug
-	printf ("This is the PID: %i\n",getpid());
 	char buffer[255];
 	char *str_to_ret = malloc (sizeof (char) * 50);
 
 	fp = popen(a, "r");
 	if (fp == NULL) {
 		/* Handle error */
-		printf ("Error opening Null: %s\n",strerror(errno));
-	}
-	if (fp != NULL) {
-		/* Handle error */
-		printf ("Error opening NOT NULL: %s\n",strerror(errno));
+		printf ("This is the PID: %i\n",getpid());
+		printf ("Error opening: %s\n",strerror(errno));
 	}
 
 	while (fgets(buffer, 255, fp) != NULL)
