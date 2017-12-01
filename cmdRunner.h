@@ -11,6 +11,8 @@ char* cmdRunner (char *a) {
 
 	while (fgets(path, 255, fp) != NULL)
 	    printf("%s", path);
+			strcpy(buffer_out,path);
+			printf("buffer_out  %s", buffer_out);
 	status = pclose(fp);
 	if (status == -1) {
 	    /* Error reported by pclose() */
@@ -18,8 +20,6 @@ char* cmdRunner (char *a) {
 	} else {
 	    /* Use macros described under wait() to inspect `status' in order
 	       to determine success/failure of command executed by popen() */
-	    strcpy(buffer_out,path);
-		  printf("buffer_out  %s", buffer_out);
 			return buffer_out;
 	}
 }
