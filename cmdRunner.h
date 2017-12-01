@@ -33,7 +33,7 @@ char* cmdRunner (char *a) {
 		 } else if (return_pid == 0) {
 		     /* child is still running */
 				 printf("still running");
-		 } else if (return_pid == process_id) {
+		 } else if (return_pid == getpid()) {
 		     /* child is finished. exit status in   status */
 				 printf("finished running\n");
 				 return str_to_ret;
