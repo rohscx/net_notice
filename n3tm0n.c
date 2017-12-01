@@ -253,9 +253,10 @@ int main (void) {
 	int netcheck_1;
 	char *ipAddressWLAN0 = cmdRunner(ps_cmd_4);
 	char *ipAddressETH0 = cmdRunner(ps_cmd_3);
+	// debugs
 	//printf ("UpDown Status : %d\n", updown_1);
-	printf ("ipAddressWLAN0 : %s\n", ipAddressWLAN0);
-	printf ("ipAddressETH0 : %s\n", ipAddressETH0);
+	//printf ("ipAddressWLAN0 : %s\n", ipAddressWLAN0);
+	//printf ("ipAddressETH0 : %s\n", ipAddressETH0);
 	if (updown_1 !=0) {
 		// text color green
 		printf ("%s.\n", KGRN);
