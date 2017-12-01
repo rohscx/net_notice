@@ -12,7 +12,7 @@ char* cmdRunner (char *a) {
 	while (fgets(path, 255, fp) != NULL)
 	    printf("%s", path);
 			strcpy(str_to_ret,path);
-			printf("buffer_out  %s", buffer_out);
+			printf("buffer_out  %s", str_to_ret);
 	status = pclose(fp);
 	if (status == -1) {
 	    /* Error reported by pclose() */
