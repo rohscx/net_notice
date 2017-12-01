@@ -200,11 +200,12 @@ char* cmdRunner (char *a) {
 		}
 
 		pclose(pipe);
-		close(pipe);
+
 		buffer[strlen(buffer)-1] = '\0';
 		buffer_out[strlen(buffer)-1] = '\0';
 		strcpy(buffer_out,buffer);
 	}
+	close(pipe);
 	// debug
 	printf("%s", buffer_out);
 	return buffer_out;
