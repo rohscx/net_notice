@@ -7,9 +7,14 @@ char* cmdRunner (char *a) {
 	char *str_to_ret = malloc (sizeof (char) * 50);
 
 	fp = popen(a, "r");
-	if (fp == NULL)
-	    /* Handle error */;
-			printf ("Error opening: %s\n",strerror(errno));
+	if (fp == NULL) {
+		/* Handle error */
+		printf ("Error opening Null: %s\n",strerror(errno));
+	}
+	if (fp != NULL) {
+		/* Handle error */
+		printf ("Error opening NOT NULL: %s\n",strerror(errno));
+	}
 
 	while (fgets(buffer, 255, fp) != NULL)
 		 /* Used to trim blank spaces */
