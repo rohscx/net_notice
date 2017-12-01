@@ -271,6 +271,8 @@ int main (void) {
 	char *ipAddressWLAN0 = cmdRunner(ps_cmd_3);
 	char *ipAddressETH0 = cmdRunner(ps_cmd_4);
 	//printf ("UpDown Status : %d\n", updown_1);
+	printf ("ipAddressWLAN0 : %s\n", ipAddressWLAN0);
+	printf ("ipAddressETH0 : %s\n", ipAddressETH0);
 	if (updown_1 !=0) {
 		// text color green
 		printf ("%s.\n", KGRN);
