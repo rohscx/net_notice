@@ -270,8 +270,8 @@ int main (void) {
 	int netcheck_1;
 	char temp1 = cmdRunner(ps_cmd_3);
 	char temp2 = cmdRunner(ps_cmd_4);
-	char *ipAddressWLAN0 = char temp1;
-	char *ipAddressETH0 = char temp2;
+	char *ipAddressWLAN0 = temp1 char;
+	char *ipAddressETH0 = temp2 char;
 	//printf ("UpDown Status : %d\n", updown_1);
 	printf ("ipAddressWLAN0 : %s\n", ipAddressWLAN0);
 	printf ("ipAddressETH0 : %s\n", ipAddressETH0);
