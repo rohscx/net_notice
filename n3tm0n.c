@@ -193,8 +193,6 @@ char* cmdRunner (char *a) {
 	FILE *fp;
 	int status;
 	char path[255];
-	char *buffer_out[255];
-
 
 	fp = popen(a, "r");
 	if (fp == NULL)
@@ -204,6 +202,7 @@ char* cmdRunner (char *a) {
 	while (fgets(path, 255, fp) != NULL)
 	    printf("%s", path);
 			strcpy(buffer_out,path);
+			printf("buffer_out  %s", buffer_out);
 	status = pclose(fp);
 	if (status == -1) {
 	    /* Error reported by pclose() */
