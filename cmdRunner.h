@@ -1,7 +1,7 @@
 char* cmdRunner (char *a) {
 	FILE *fp;
 	int status;
-	pid_t return_pid = waitpid(process_id, &status, WNOHANG); /* WNOHANG def'd in wait.h */
+	pid_t return_pid = waitpid(getpid(), &status, WNOHANG); /* WNOHANG def'd in wait.h */
 	char buffer[255];
 	char *str_to_ret = malloc (sizeof (char) * 50);
 
