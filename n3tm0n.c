@@ -211,7 +211,8 @@ char* cmdRunner (char *a) {
 	} else {
 	    /* Use macros described under wait() to inspect `status' in order
 	       to determine success/failure of command executed by popen() */
-			return path;
+				 strcpy(buffer_out,path);
+			return buffer_out;
 	}
 }
 
