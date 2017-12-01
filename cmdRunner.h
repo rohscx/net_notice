@@ -2,7 +2,7 @@ char* cmdRunner (char *a) {
 	FILE *fp;
 	int status;
 	char path[255];
-	char *str_to_ret = malloc (sizeof (char) * required_size);
+	char *str_to_ret = malloc (sizeof (char) * 255);
 
 	fp = popen(a, "r");
 	if (fp == NULL)
