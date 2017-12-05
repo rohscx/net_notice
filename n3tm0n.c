@@ -292,7 +292,7 @@ int main (void) {
 			char *sup_kill = cmd_maker(kill_cmd_3, wpa_cmd_2);
 			char *eth_kill = cmd_maker(ip_cmd_2, eth_int_1);
 			//char *doctor_1 = takedown (dhcp_wlan, dhcp_kill, sup_kill, rf_cmd_2, eth_kill);
-			char *doctor_1 = takedown (sup_kill,dhcp_wlan,dhcp_kill,rf_cmd_2,eth_kill);
+			char *doctor_1 = takedown (sup_kill,dhcp_wlan,rf_cmd_2,eth_kill);
 			//printf("%s\n %s\n",sup_kill, wlan_dhcp_pid);//debug
 			char *eth_up = cmd_maker(ip_cmd_1, eth_int_1);
 			char *dhcp_wlan_up = cmd_maker(dhcp_cmd_1, wlan_int_1);
