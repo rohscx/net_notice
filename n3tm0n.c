@@ -38,6 +38,7 @@ static char rf_cmd_1[19] = "rfkill unblock wifi";
 static char rf_cmd_2[18] = "rfkill block wifi";
 static char kill_cmd_1[24] = "killall --ignore-case ";
 static char kill_cmd_2[11] = "kill -9 ";
+static char kill_cmd_3[13] = "pkill -9 ";
 static char ps_cmd_1[23] = "ps aux | grep --color ";
 static char ps_cmd_2[36] = " | grep -v grep | awk '{print $2}'";
 static char ps_cmd_3[55] = "ip a | grep wlan0 | cut -d: -f2 | awk '{print $2}'";
@@ -288,7 +289,7 @@ int main (void) {
 			char *wlan_dhcp_pid = pidfind(ps_wlan);
 			char *dhcp_kill = cmd_maker(kill_cmd_2, wlan_dhcp_pid);
 			char *sub_pid = cmdRunner(ps_cmd_5);
-			char *sup_kill = cmd_maker(kill_cmd_2, sub_pid);
+			char *sup_kill = cmd_maker(kill_cmd_3, wpa_cmd_2);
 			char *eth_kill = cmd_maker(ip_cmd_2, eth_int_1);
 			//char *doctor_1 = takedown (dhcp_wlan, dhcp_kill, sup_kill, rf_cmd_2, eth_kill);
 			char *doctor_1 = takedown (sup_kill,dhcp_wlan,dhcp_kill,rf_cmd_2,eth_kill);
