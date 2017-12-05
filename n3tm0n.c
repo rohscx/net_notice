@@ -198,9 +198,10 @@ char* takedown (char *a, char *b, char *c, char *d, char *e) {
 	int z1,y1,w1;
 	char* x1[] = {app1};
 	char* v1[] = {a,b,c,d,e};
+	w1 = 0;
 	for (y1 = 0; y1 < 5; y1++) {
-		w1 = system(x1[y1]);
-		wait;
+		//w1 = system(x1[y1]);
+		//wait;
 		//printf("w1=%i system(%s) x1[%i]\n",w1,x1[y1],y1);
 	       if (w1 = 0) {
 		       system(v1[y1]);
