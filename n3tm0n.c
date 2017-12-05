@@ -200,7 +200,12 @@ char* takedown (char *a, char *b, char *c, char *d, char *e) {
 	char* v1[] = {a,b,c,d,e};
 	w1 = 0;
 	for (y1 = 0; y1 < 5; y1++) {
-		//w1 = system(x1[y1]);
+		system(v1[y1]);
+		printf ("%s.\n", KRED);
+		printf("BRINGING DOWN ____|:|<*-*> (%s)\n",v1[y1]);
+		printf ("%s.\n", KNRM);
+		sleep(1);
+		/*w1 = system(x1[y1]);
 		//wait;
 		//printf("w1=%i system(%s) x1[%i]\n",w1,x1[y1],y1);
 	       if (w1 = 0) {
@@ -209,7 +214,8 @@ char* takedown (char *a, char *b, char *c, char *d, char *e) {
 		       printf("Killing %s\n",v1[y1]);
 					 printf ("%s.\n", KNRM);
 		       sleep(2);
-	       }
+	       }*/
+		/*
 		if (y1 = 1) {
 			for (y1 = 1; y1 < 4; y1++) {
 				system(v1[y1]);
@@ -219,7 +225,7 @@ char* takedown (char *a, char *b, char *c, char *d, char *e) {
 				sleep(1);
 			}
 			y1 = 5;
-		}
+		}*/
 
 	}
 	sleep(15);
