@@ -44,9 +44,6 @@ static char ps_cmd_2[36] = " | grep -v grep | awk '{print $2}'";
 static char ps_cmd_3[55] = "ip a | grep wlan0 | cut -d: -f2 | awk '{print $2}'";
 static char ps_cmd_4[55] = "ip a | grep eth0 | cut -d: -f2 | awk '{print $2}'";
 static char ps_cmd_5[64] = "ip a | grep wpa_supplicant | cut -d: -f2 | awk '{print $2}'";
-static char app1 [] = {"ps -A | grep -q wpa_supplicant"};
-static char app2 [] = {"ps -A | grep -q dhclient"};
-static char app3 [] = {"ps -A | grep -q rfkill"};
 static int recoveryCounter = -1;
 
 
@@ -194,39 +191,14 @@ char* pidfind (char *a) {
 
 
 char* takedown (char *a, char *b, char *c, char *d, char *e) {
-	//kind of complicated and I have forgotton how it works...
-	int z1,y1,w1;
-	char* x1[] = {app1};
+	//removed a bunch of stuff and now it's simpler
 	char* v1[] = {a,b,c,d,e};
-	w1 = 0;
 	for (y1 = 0; y1 < 5; y1++) {
 		system(v1[y1]);
 		printf ("%s.\n", KRED);
 		printf("BRINGING DOWN ____|:|<*-*> (%s)\n",v1[y1]);
 		printf ("%s.\n", KNRM);
 		sleep(1);
-		/*w1 = system(x1[y1]);
-		//wait;
-		//printf("w1=%i system(%s) x1[%i]\n",w1,x1[y1],y1);
-	       if (w1 = 0) {
-		       system(v1[y1]);
-					 printf ("%s.\n", KRED);
-		       printf("Killing %s\n",v1[y1]);
-					 printf ("%s.\n", KNRM);
-		       sleep(2);
-	       }*/
-		/*
-		if (y1 = 1) {
-			for (y1 = 1; y1 < 4; y1++) {
-				system(v1[y1]);
-				printf ("%s.\n", KRED);
-				printf("BRINGING DOWN ____|:|<*-*> (%s)\n",v1[y1]);
-				printf ("%s.\n", KNRM);
-				sleep(1);
-			}
-			y1 = 5;
-		}*/
-
 	}
 	sleep(15);
 }
