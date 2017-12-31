@@ -22,6 +22,7 @@
 #include "socktest_1.h" // command Runner file
 #include "socktest_2.h" // command Runner file
 #include "cmd_maker.h" // command Runner file
+#include "pidfind.h" // command Runner file
 
 
 // variables for application
