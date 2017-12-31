@@ -1,3 +1,11 @@
+#define KNRM  "\x1B[0m" // text color normal
+#define KRED  "\x1B[31m" // text color red
+#define KGRN  "\x1B[32m" // text color green
+#define KYEL  "\x1B[33m" // text color yellow
+#define KBLU  "\x1B[34m" // text color blue
+#define KMAG  "\x1B[35m" // text color magenta
+#define KCYN  "\x1B[36m" // text color cyan
+#define KWHT  "\x1B[37m" // text color white
 // contatinates to create usable commands
 char* cmd_maker(const char *s1, const char *s2) {
 	const size_t len1 = strlen(s1);
