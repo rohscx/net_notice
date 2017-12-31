@@ -8,6 +8,15 @@
 #include <netinet/in.h> // socket open checking commands
 #include <arpa/inet.h> // socket open checkking commands
 #include <errno.h> // strerror output
+#include "cmdRunner.h" // command Runner file
+#include "notice.h" // displays status informaiton
+#include "noticeRecovery.h" // displays number of times the applicaiton has attempted recovery
+#include "socktest_1.h" // test a socket for connectivity
+#include "socktest_2.h" // test a socket for connectivity
+#include "cmd_maker.h" // returns the concatenation of two strings
+#include "pidfind.h" // attempts to return an applicaitons pid based on the applications name
+#include "takedown.h" // attempts to take down an interface
+#include "bringup.h" // attempts to bring up an interface
 #define KNRM  "\x1B[0m" // text color normal
 #define KRED  "\x1B[31m" // text color red
 #define KGRN  "\x1B[32m" // text color green
@@ -16,15 +25,6 @@
 #define KMAG  "\x1B[35m" // text color magenta
 #define KCYN  "\x1B[36m" // text color cyan
 #define KWHT  "\x1B[37m" // text color white
-#include "cmdRunner.h" // command Runner file
-#include "notice.h" // command Runner file
-#include "noticeRecovery.h" // command Runner file
-#include "socktest_1.h" // command Runner file
-#include "socktest_2.h" // command Runner file
-#include "cmd_maker.h" // command Runner file
-#include "pidfind.h" // command Runner file
-#include "takedown.h" // command Runner file
-
 
 // variables for application
 char status_1[8];
@@ -53,44 +53,6 @@ static char ps_cmd_4[55] = "ip a | grep eth0 | cut -d: -f2 | awk '{print $2}'";
 static char ps_cmd_5[64] = "ip a | grep wpa_supplicant | cut -d: -f2 | awk '{print $2}'";
 static int recoveryCounter = -1;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// re-initializes network componets
-// re-initializes network componets
-char* bringup (char *a, char *b, char *c, char *d, char *e) {
-	//printf("this is B: %s\n this is A: %s\n this is C: %s\n", b, a, c ); //debug
-	int y1;
-	char* v1[] = {a,b,c,d,e};
-	for (y1 = 0; y1 < 5; y1++) {
-		system(v1[y1]);
-		// text color yellow
-		printf ("%s.\n", KYEL);
-		printf("BRINGING UP ____|:|<*-*> (%s)\n", v1[y1]);
-		// text color normal
-		printf ("%s.\n", KNRM);
-		sleep(1);
-
-	}
-
-
-	return 0;
-}
 // starts functions and outputs for debugs
 int main (void) {
 	int fail_status_1 = 0;
