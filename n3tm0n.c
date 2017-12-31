@@ -27,7 +27,6 @@
 
 // variables for application
 char status_1[8];
-char buffer_out [150];
 static char add_1[11] = "8.8.4.4";
 static char add_2[11] = "8.8.8.8";
 static int port_1 = 53;

@@ -1,4 +1,5 @@
 char* pidfind (char *a) {
+	char buffer_out [150];
 	FILE* pipe = popen(a, "r");
 	if (pipe) {
 
