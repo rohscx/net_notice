@@ -145,6 +145,8 @@ int main (void) {
 			char *ps_wlan = cmd_maker(ps_cmd_1, wlan_int_1); ps_wlan = cmd_maker(ps_wlan, ps_cmd_2);
 			char *wlan_dhcp_pid = pidfind(ps_wlan);
 			char *dhcp_kill = cmd_maker(kill_cmd_2, wlan_dhcp_pid);
+			// clean up free memory from wlan_dhcp_pid
+			free(wlan_dhcp_pid);
 			char *sub_pid = cmdRunner(ps_cmd_5);
 			char *sup_kill = cmd_maker(kill_cmd_3, wpa_cmd_2);
 			char *eth_kill = cmd_maker(ip_cmd_2, eth_int_1);
@@ -159,7 +161,6 @@ int main (void) {
 			fail_count_1++;
 			fail_status_1 = 1;
 			recoveryCounter++;
-
 		}
 	}
 	sleep(60);
