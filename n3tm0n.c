@@ -18,6 +18,8 @@
 #define KWHT  "\x1B[37m" // text color white
 #include "cmdRunner.h" // command Runner file
 #include "notice.h" // command Runner file
+#include "noticeRecovery.h" // command Runner file
+
 
 // variables for application
 char status_1[8];
@@ -52,20 +54,7 @@ static int recoveryCounter = -1;
 
 
 
-// networkRecovery status notification
-void noticeRecovery (int a, char *b, char *c) {
-	if (a == -1){
-		// do nothing
-	} else if (a == 0) {
-		printf ("Network Doctor: NO actions needed\n");
-		printf ("External IP Address: %s\n", b);
-		printf ("Internal IP Address: %s\n", c);
-	} else {
-		printf ("Network Doctor: Corrective action teken: %i\n", a);
-		printf ("External IP Address: %s\n", b);
-		printf ("Internal IP Address: %s\n", c);
-	}
-}
+
 // pings and collects response. Special not about struct: int (a) and (c) are passed for IP and Port number
 int socktest_1(void (*f)(int,char *,char *), int a, char *b, int c, char *d, char *e) {
 	int z;
