@@ -17,6 +17,7 @@
 #define KCYN  "\x1B[36m" // text color cyan
 #define KWHT  "\x1B[37m" // text color white
 #include "cmdRunner.h" // command Runner file
+#include "notice.h" // command Runner file
 
 // variables for application
 char status_1[8];
@@ -49,21 +50,7 @@ static int recoveryCounter = -1;
 
 
 
-// functions
-// network status notification
-int notice (int a) {
-	//printf("int a = %i\n", a); //debug
-	if (a <= 0){
-		char status_1[] = {"(ノ ˘_˘)ノ　ζ|||ζ　ζ|||ζ　ζ|||ζ"};
-		printf ("NETWORK STATUS : %s\n" , status_1);
-		return 10;
-	}else {
-		char status_1[] = {"⊃｡•́‿•̀｡)⊃━✿✿✿✿✿✿✿✿✿✿✿✿✿✿✿✿✿✿"};
-		printf ("NETWORK STATUS : %s\n" , status_1);
-		return 10;
-	}
 
-}
 
 // networkRecovery status notification
 void noticeRecovery (int a, char *b, char *c) {
