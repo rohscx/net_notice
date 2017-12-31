@@ -1,3 +1,4 @@
+// locates the applications pid based on the name
 char* pidfind (char *a) {
 	char buffer_out [150];
 	FILE* pipe = popen(a, "r");
