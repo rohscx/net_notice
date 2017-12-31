@@ -10,7 +10,7 @@ char* restApi (char *url[], char *postData[]) {
     res = curl_easy_perform(curl);
     curl_easy_cleanup(curl);
   }
-  printf ("url : %s\n" , a);
-  printf ("blob : %s\n" , b);
+  printf ("url : %s\n" , url);
+  printf ("blob : %s\n" , postData);
   return 0;
 }
