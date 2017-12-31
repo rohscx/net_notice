@@ -75,8 +75,8 @@ int main (void) {
 	// Declare an object of class geeks
 	 restApi obj1;
 	 // accessing data member
-	 char *dataUrl = "wwww.google.com.com.com.com";
-	 char *dataBlob = "blob0:blob,blob1:{blob:deepBlob}";
+	 char *dataUrl[] = "wwww.google.com.com.com.com";
+	 char *dataBlob[] = "blob0:blob,blob1:{blob:deepBlob}";
 	 // accessing member function
 	 restApi(dataUrl,dataBlob);
 	if (updown_1 !=0) {

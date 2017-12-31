@@ -1,9 +1,8 @@
 // locates the applications pid based on the name
-char* restApi (char *a, char *b) {
+char* restApi (char *url[], char *postData[]) {
   CURL *curl;
   CURLcode res;
-  char url[]= a;
-  char postData[] = b;
+
   curl = curl_easy_init();
   if(curl) {
     curl_easy_setopt(curl, CURLOPT_URL, url);
