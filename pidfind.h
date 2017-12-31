@@ -12,7 +12,7 @@ char* pidfind (char *a) {
 		pclose(pipe);
 		buffer[strlen(buffer)-1] = '\0';
 		buffer_out[strlen(buffer)-1] = '\0';
-		char *pidfindOutput = malloc(sz);  // allocate memory from the heap
+		char *pidfindOutput = malloc(buffer_out);  // allocate memory from the heap
 		strcpy(pidfindOutput,buffer);
 	}
 	return pidfindOutput;
