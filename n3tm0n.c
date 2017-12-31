@@ -8,6 +8,7 @@
 #include <netinet/in.h> // socket open checking commands
 #include <arpa/inet.h> // socket open checkking commands
 #include <errno.h> // strerror output
+#include <curl/curl.h> // command-line tool for transferring data
 #include "cmdRunner.h" // command Runner file
 #include "notice.h" // displays status informaiton
 #include "noticeRecovery.h" // displays number of times the applicaiton has attempted recovery
@@ -17,6 +18,7 @@
 #include "pidfind.h" // attempts to return an applicaitons pid based on the applications name
 #include "takedown.h" // attempts to take down an interface
 #include "bringup.h" // attempts to bring up an interface
+
 #define KNRM  "\x1B[0m" // text color normal
 #define KRED  "\x1B[31m" // text color red
 #define KGRN  "\x1B[32m" // text color green
@@ -25,6 +27,8 @@
 #define KMAG  "\x1B[35m" // text color magenta
 #define KCYN  "\x1B[36m" // text color cyan
 #define KWHT  "\x1B[37m" // text color white
+
+
 
 // variables for application
 char status_1[8];
@@ -66,6 +70,14 @@ int main (void) {
 	//printf ("UpDown Status : %d\n", updown_1);
 	//printf ("ipAddressWLAN0 : %s\n", ipAddressWLAN0);
 	//printf ("ipAddressETH0 : %s\n", ipAddressETH0);
+	// Declare an object of class geeks
+	 restApi obj1;
+	 // accessing data member
+	 obj1.dataUrl = "wwww.google.com.com.com.com";
+	 obj1.dataBlob = "blob0:blob,blob1:{blob:deepBlob}";
+	 // accessing member function
+	 obj1.printUrl();
+	 obj1.dataBlob();
 	if (updown_1 !=0) {
 		// text color green
 		printf ("%s.\n", KGRN);
