@@ -18,7 +18,7 @@
 #include "pidfind.h" // attempts to return an applicaitons pid based on the applications name
 #include "takedown.h" // attempts to take down an interface
 #include "bringup.h" // attempts to bring up an interface
-
+#include "restApi.h" // to make rest api
 
 #define KNRM  "\x1B[0m" // text color normal
 #define KRED  "\x1B[31m" // text color red
@@ -58,40 +58,6 @@ static char ps_cmd_4[55] = "ip a | grep eth0 | cut -d: -f2 | awk '{print $2}'";
 static char ps_cmd_5[64] = "ip a | grep wpa_supplicant | cut -d: -f2 | awk '{print $2}'";
 static int recoveryCounter = -1;
 
-class restApi
-{
-    // Access specifier
-    public:
-    // Data Members
-    string dataUrl;
-    string dataBlob;
-    // Member Functions()
-    void printUrl()
-    {
-       cout << "dataUrl is: " << dataUrl;
-    }
-    void dataBlob()
-    {
-       cout << "dataBlob is: " << dataBlob;
-    }
-    void postRequest()
-    {
-       cout << "dataBlob is: " << dataBlob;
-       CURL *curl;
-       CURLcode res;
-       char url[]= dataUrl;
-       char postData[] = dataBlob;
-       curl = curl_easy_init();
-       if(curl) {
-         curl_easy_setopt(curl, CURLOPT_URL, url);
-         curl_easy_setopt(curl, CURLOPT_POSTFIELDS, postData);
-         res = curl_easy_perform(curl);
-         curl_easy_cleanup(curl);
-       }
-       return 0;
-     }
-};
-
 
 // starts functions and outputs for debugs
 int main (void) {
@@ -109,11 +75,10 @@ int main (void) {
 	// Declare an object of class geeks
 	 restApi obj1;
 	 // accessing data member
-	 obj1.dataUrl = "wwww.google.com.com.com.com";
-	 obj1.dataBlob = "blob0:blob,blob1:{blob:deepBlob}";
+	 char *dataUrl = "wwww.google.com.com.com.com";
+	 char *dataBlob = "blob0:blob,blob1:{blob:deepBlob}";
 	 // accessing member function
-	 obj1.printUrl();
-	 obj1.dataBlob();
+	 restApi(dataUrl,dataBlob);
 	if (updown_1 !=0) {
 		// text color green
 		printf ("%s.\n", KGRN);
