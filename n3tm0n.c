@@ -18,6 +18,7 @@
 #include "pidfind.h" // attempts to return an applicaitons pid based on the applications name
 #include "takedown.h" // attempts to take down an interface
 #include "bringup.h" // attempts to bring up an interface
+#include "restApi.h" // attempts to bring up an interface
 
 #define KNRM  "\x1B[0m" // text color normal
 #define KRED  "\x1B[31m" // text color red
