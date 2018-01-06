@@ -4,5 +4,5 @@ This tool is designed to detect connection failures when using the Linux wpa_sup
 External Library: curl
 Operating System: Linux
 Language: C
-OS Packages: libcurl-dev
-Package manager commands: {apt: sudo apt-get install libcurl-dev}
+OS Packages: libcurl4-openssl-dev
+Package manager commands: {apt: sudo apt-get install libcurl4-openssl-dev}
