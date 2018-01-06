@@ -1,0 +1,10 @@
+[Unit]
+Description=n3tm0n application service
+
+[Service]
+WorkingDirectory=/opt/net_notice
+ExecStart=n3tm0n
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
